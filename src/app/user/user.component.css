@@ -1,0 +1,26 @@
+.main-card
+{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-card
+{
+    height: 450px;
+    width: 400px;
+    
+}
+  .home-header
+  {
+      font-size: 0px;
+  }
+  .underlineHover
+  {
+      font-size: 30px;
+      margin: 0;
+      padding: 0;
+      display: inline;
+      color:blue;
+  }

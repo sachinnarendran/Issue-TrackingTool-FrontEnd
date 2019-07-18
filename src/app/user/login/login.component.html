@@ -1,0 +1,27 @@
+<div class="login-card">
+    <div class="example-header-image">
+        <img src="assets/img/login.png"/>
+    </div>
+      <h3>Login</h3>
+
+      <form class="login-form" [formGroup]="loginForm" (ngSubmit)="loginUser(loginForm)">
+
+          <mat-form-field class="example-full-width">
+              <input matInput placeholder="Email" formControlName="email"
+                [errorStateMatcher]="matcher">
+                <mat-error *ngIf="loginForm.get('email').hasError('required') && loginForm.get('email').hasError('required')">
+                  Please enter a valid email address
+                </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Password" type="password" formControlName="password" />
+            <mat-error *ngIf="loginForm.get('password').hasError('required')">
+              Password is mandatory
+            </mat-error>
+        </mat-form-field>
+        
+        <button mat-raised-button color="primary" [disabled]="loginForm.invalid">Login</button>
+
+      </form>
+</div>

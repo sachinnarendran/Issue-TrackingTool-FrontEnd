@@ -1,0 +1,10 @@
+.example-header-image img
+{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+.example-full-width {
+    width: 100%;
+    margin-bottom:5px;
+}  
