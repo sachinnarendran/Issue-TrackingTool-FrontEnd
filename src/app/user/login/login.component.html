@@ -4,7 +4,7 @@
     </div>
       <h3>Login</h3>
 
-      <form class="login-form" [formGroup]="loginForm" (ngSubmit)="loginUser(loginForm)">
+      <form class="login-form" [formGroup]="loginForm" (ngSubmit)="loginUser()">
 
           <mat-form-field class="example-full-width">
               <input matInput placeholder="Email" formControlName="email"

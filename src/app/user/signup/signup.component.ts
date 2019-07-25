@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl,FormGroup ,FormBuilder,Validators} from '@angular/forms';
+import { AuthService } from '../auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -8,7 +11,9 @@ import { FormControl,FormGroup ,FormBuilder,Validators} from '@angular/forms';
 })
 export class SignupComponent implements OnInit {
   signupform:FormGroup;
-  constructor(private fb:FormBuilder) { }
+  isSignupSuccess:boolean;
+  isSignupFailed : boolean;
+  constructor(private fb:FormBuilder,private authService:AuthService,private snackBar:MatSnackBar,private router: Router) { }
 
   ngOnInit() {
     this.createFormGroup()
@@ -22,11 +27,37 @@ export class SignupComponent implements OnInit {
     });
   }
 
-  registerUser(form:FormGroup)
+  registerUser()
   {
-    console.log('name',form.value.email);
-    console.log('email:',form.value.name);
-    console.log('password',form.value.password);
-  }
-
+    console.log('name',this.signupform.value.name);
+    console.log('email:',this.signupform.value.email);
+    
+    
+    let userData = {
+        name:this.signupform.value.name,
+        email:this.signupform.value.email,
+        password:this.signupform.value.password
+    }
+    this.authService.signup(userData)
+    .subscribe((apiResponse) =>{
+      if(apiResponse.status === 200)
+      {
+        this.isSignupSuccess = true;
+        this.snackBar.open("Sign Up Success",'undo',{duration:5000});
+        setTimeout(()=>{
+          this.router.navigate(['/login']);
+        })
+        
+      }
+      else if(apiResponse.status === 403)
+      {
+        this.isSignupSuccess = false;
+        this.snackBar.open("User Already Present",'undo',{duration:5000});
+      }
+      else{
+        this.isSignupSuccess = false;
+        this.snackBar.open("Unable to Sign Up",'undo',{duration:5000});;
+      }
+  })
+}
 }

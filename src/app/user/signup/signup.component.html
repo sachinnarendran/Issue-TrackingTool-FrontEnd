@@ -6,7 +6,7 @@
     <h3>Register Here!!!</h3>
   
   
-    <form class="signup-form" [formGroup]="signupform" (ngSubmit)="registerUser(signupform)">
+    <form class="signup-form" [formGroup]="signupform" (ngSubmit)="registerUser()">
         
       <mat-form-field class="example-full-width">
           <input matInput placeholder="Full Name" formControlName="name">

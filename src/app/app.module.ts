@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import {HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -10,7 +10,12 @@ import { SignupComponent } from './user/signup/signup.component';
 import { LoginComponent } from './user/login/login.component';
 import { UserComponent } from './user/user.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-
+import { AppService } from './app.service';
+import {CookieService} from 'ngx-cookie-service';
+import { AuthService } from './user/auth.service';
+import { ViewissueComponent } from './issue/viewissue/viewissue.component';
+import { IssueComponent } from './issue/issue.component';
+import { CreateissueComponent } from './issue/createissue/createissue.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +23,10 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     NavbarComponent,
     SignupComponent,
     LoginComponent,
-    UserComponent
+    UserComponent,
+    ViewissueComponent,
+    IssueComponent,
+    CreateissueComponent
   ],
   imports: [
     BrowserModule,
@@ -26,9 +34,10 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     BrowserAnimationsModule,
     AppMaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [AppService,CookieService,AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
