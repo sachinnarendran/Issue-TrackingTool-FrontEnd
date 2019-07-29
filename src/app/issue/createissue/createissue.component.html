@@ -22,7 +22,9 @@
   <mat-step [stepControl]="issueForm2">
     <form [formGroup]="issueForm2">
       <ng-template matStepLabel>Attach Screenshot</ng-template>
-          <input placeholder="Screenshot" formControlName="screenshot" type="file" required>
+          <label class="custom-file-upload">Upload File
+            <input formControlName="screenshot" type="file" required>
+          </label>
         <mat-error *ngIf="issueForm2.get('screenshot').hasError('required')">
             <strong>Screenshot is required!</strong>
         </mat-error>
