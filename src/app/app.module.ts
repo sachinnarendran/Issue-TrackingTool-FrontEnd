@@ -16,6 +16,7 @@ import { AuthService } from './user/auth.service';
 import { ViewissueComponent } from './issue/viewissue/viewissue.component';
 import { IssueComponent } from './issue/issue.component';
 import { CreateissueComponent } from './issue/createissue/createissue.component';
+import { QuillModule } from 'ngx-quill';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { CreateissueComponent } from './issue/createissue/createissue.component'
     AppMaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    QuillModule.forRoot()
   ],
   providers: [AppService,CookieService,AuthService],
   bootstrap: [AppComponent]
