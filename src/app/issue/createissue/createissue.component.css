@@ -13,3 +13,8 @@ input[type="file"] {
     padding: 6px 12px;
     cursor: pointer;
 }
+.quill-editor {
+    min-height: 16em;
+    max-height: 20em;
+    overflow-y: auto;
+  }

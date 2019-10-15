@@ -16,8 +16,7 @@ import { AuthService } from './user/auth.service';
 import { ViewissueComponent } from './issue/viewissue/viewissue.component';
 import { IssueComponent } from './issue/issue.component';
 import { CreateissueComponent } from './issue/createissue/createissue.component';
-import { QuillModule } from 'ngx-quill';
-
+import { AngularEditorModule } from '@kolkov/angular-editor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +36,7 @@ import { QuillModule } from 'ngx-quill';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    QuillModule.forRoot()
+    AngularEditorModule
   ],
   providers: [AppService,CookieService,AuthService],
   bootstrap: [AppComponent]
