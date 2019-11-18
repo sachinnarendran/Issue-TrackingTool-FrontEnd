@@ -1,6 +1,6 @@
-<mat-vertical-stepper [linear]="true" #stepper>
-  <mat-step [stepControl]="issueForm">
-    <form [formGroup]="issueForm">
+<form [formGroup]="issueForm">
+  <mat-vertical-stepper [linear]="true" #stepper formArrayName="issueFormArray">
+    <mat-step formGroupName="0" [stepControl]="issueFormArray.get([0])">
       <ng-template matStepLabel>Fill out Issue Details</ng-template>
       <mat-form-field class="full-width">
         <input matInput placeholder="Title" formControlName="title" required>
@@ -15,12 +15,10 @@
         </mat-error>
       </mat-form-field>
       <div>
-        <button mat-button matStepperNext>Next</button>
+        <button mat-button matStepperNext type="button">Next</button>
       </div>
-    </form>
-  </mat-step>
-  <mat-step [stepControl]="issueForm2">
-    <form [formGroup]="issueForm2">
+    </mat-step>
+    <mat-step formGroupName="1" [stepControl]="issueFormArray.get([1])">
       <ng-template matStepLabel>Attach Screenshot</ng-template>
       <label class="custom-file-upload">Upload File
         <input formControlName="screenshot" type="file" required>
@@ -29,14 +27,14 @@
         <strong>Screenshot is required!</strong>
       </mat-error>
       <div>
-        <button mat-button matStepperNext>Next</button>
+        <button mat-button matStepperPrevious type="button">Next</button>
+        <button mat-button matStepperNext type="button">Previous</button>
       </div>
-    </form>
-  </mat-step>
-  <mat-step [stepControl]="issueForm3">
-    <form [formGroup]="issueForm3">
+    </mat-step>
+    <mat-step formGroupName="2" [stepControl]="issueFormArray.get([2])">
       <ng-template matStepLabel>Add Description For Template</ng-template>
       <angular-editor formControlName="editorContent" [config]="editorConfig"></angular-editor>
-    </form>
-  </mat-step>
-</mat-vertical-stepper>
+      <button></button>
+    </mat-step>
+  </mat-vertical-stepper>
+</form>
