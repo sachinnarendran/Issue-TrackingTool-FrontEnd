@@ -1,6 +1,39 @@
-<div class="issue-table-container">
-  <table mat-table [dataSource]="issueList" class="issue-table" matSort matSortActive="created">
+<div class="spinner-container" *ngIf="dataSource.loading$ | async">
+  <mat-spinner></mat-spinner>
+</div>  
 
-  </table>
+<mat-table class="issue-table" [dataSource]="dataSource"
+  matSort matSortAtive="issueReporter" matSortDirection="asc" matSortDisableClear>  
+  <ng-container *matColumnDef="issueTitle">
+    <mat-header-cell *matCellHeaderDef>Title</mat-header-cell>
+    <mat-cell *matCellDef="let issue">{{issue.issueTitle}}</mat-cell>
+  </ng-container>
 
-</div>
+  <ng-container *matColumnDef="issueDescription">
+    <mat-header-cell *matCellHeaderDef>Description</mat-header-cell>
+    <mat-cell *matCellDef="let issue">{{issue.issueDescription}}</mat-cell>
+  </ng-container>
+
+  <ng-container *matColumnDef="issueStatus">
+    <mat-header-cell *matCellHeaderDef>Issue Status</mat-header-cell>
+    <mat-cell *matCellDef="let issue">{{issue.issueStatus}}</mat-cell>
+  </ng-container>
+
+  <ng-container *matColumnDef="issueAssignee">
+    <mat-header-cell *matCellHeaderDef>Assignee</mat-header-cell>
+    <mat-cell *matCellDef="let issue">{{issue.issueAssignee}}</mat-cell>
+  </ng-container>
+
+  <ng-container *matColumnDef="issueReporter">
+    <mat-header-cell *matCellHeaderDef mat-sort-header>Reporter</mat-header-cell>
+    <mat-cell *matCellDef="let issue">{{issue.issueReporter}}</mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+</mat-table>
+
+<mat-paginator [length]="course?.lessonsCount" [pageSize]="3"
+                   [pageSizeOptions]="[5, 10, 25]"></mat-paginator>
