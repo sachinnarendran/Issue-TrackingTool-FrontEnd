@@ -12,7 +12,7 @@ import { MatSort } from '@angular/material/sort';
 })
 export class ViewissueComponent implements AfterViewInit, OnInit {
 displayedColumns : ["issueTitle","issueDescription","issueStatus","issueAssignee","issueReporter"];
-dataSource: IssueDataSource  ;
+dataSource: IssueDataSource;
 
 @ViewChild(MatPaginator) paginator: MatPaginator;
 @ViewChild(MatSort) sort: MatSort;

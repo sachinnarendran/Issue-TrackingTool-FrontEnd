@@ -16,6 +16,8 @@ const routes: Routes = [
 
   {path:'issue',component:CreateissueComponent,pathMatch:'full'},
 
+  {path:'getIssue',component:ViewissueComponent,pathMatch:'full'},
+
   {path:'', redirectTo:'signup',pathMatch:'full'}
   
 ];

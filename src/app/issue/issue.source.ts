@@ -31,6 +31,8 @@ export class IssueDataSource implements DataSource<IssueModel>
         .pipe(
         catchError(()=> of([])),
         finalize(()=> this.loadingSubect.next(false))).
-        subscribe(issues => this.issueSubject.next(issues));
+        subscribe((apiResponse) => {
+            this.issueSubject.next(apiResponse)
+        });
     }
 }

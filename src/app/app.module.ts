@@ -17,6 +17,7 @@ import { ViewissueComponent } from './issue/viewissue/viewissue.component';
 import { IssueComponent } from './issue/issue.component';
 import { CreateissueComponent } from './issue/createissue/createissue.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import {MatPaginatorModule} from '@angular/material/paginator';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +37,8 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AngularEditorModule
+    AngularEditorModule,
+    MatPaginatorModule
   ],
   providers: [AppService,CookieService,AuthService],
   bootstrap: [AppComponent]
