@@ -4,13 +4,16 @@ import { BehaviorSubject, Observable, of } from "rxjs";
 import { IssueService } from "./issue.service";
 import { CollectionViewer } from "@angular/cdk/collections";
 import { catchError, finalize } from "rxjs/operators";
+import { MatPaginator } from "@angular/material/paginator";
 
 export class IssueDataSource implements DataSource<IssueModel>
 {
     private issueSubject  = new BehaviorSubject<IssueModel[]>([]);
     private loadingSubect = new BehaviorSubject<boolean>(false);
-
+    public issuesObject : IssueModel[] = [];
+    public totalRecordCount;
     public loading = this.loadingSubect.asObservable();
+    paginator :MatPaginator;
     
     constructor(private issueService:IssueService){}
 
@@ -31,8 +34,9 @@ export class IssueDataSource implements DataSource<IssueModel>
         .pipe(
         catchError(()=> of([])),
         finalize(()=> this.loadingSubect.next(false))).
-        subscribe((apiResponse) => {
-            this.issueSubject.next(apiResponse)
+        subscribe((apiResponse:any) => {
+            this.issuesObject = apiResponse.data;
+            this.issueSubject.next(apiResponse);
         });
     }
 }

@@ -7,5 +7,6 @@ export class IssueModel
     issueAssignee: string;
     issueCreatedDate: Date;
     issueUpdatedDate: Date; 
+    issueCount: number;
 
 }
