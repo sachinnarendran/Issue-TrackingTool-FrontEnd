@@ -18,6 +18,7 @@ import { IssueComponent } from './issue/issue.component';
 import { CreateissueComponent } from './issue/createissue/createissue.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { IssueDialogComponet } from './app-material/component/issuedialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +28,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     UserComponent,
     ViewissueComponent,
     IssueComponent,
-    CreateissueComponent
+    CreateissueComponent,
+    IssueDialogComponet
   ],
   imports: [
     BrowserModule,
@@ -41,6 +43,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatPaginatorModule
   ],
   providers: [AppService,CookieService,AuthService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[IssueDialogComponet]
 })
 export class AppModule { }

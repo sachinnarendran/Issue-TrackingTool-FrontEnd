@@ -1,0 +1,20 @@
+<h1 mat-dialog-title>Issue Details</h1>
+<div mat-dialog-content>
+    <mat-card class="issueCard">
+        <mat-card-header>
+            <mat-card-title>{{data.issueTitle}}</mat-card-title>
+        </mat-card-header>
+        
+        <mat-card-content>
+            <div class="issueDetails">
+            <h6>Issue Id :  </h6><p>{{data.issueId}}</p><br>
+            <h6>Issue Description:  </h6><p>{{data.issueDescription}}</p><br>
+            <h6>Issue Reported By:  </h6><p>{{data.issueReporter}}</p><br>
+            <h6>Issue Assignee:  </h6><p>{{data.issueAssignee}}</p><br>
+            <h6>Issue Created on:  </h6><p>{{data.createdOn | date :'short'}}</p><br>
+            <h6>Issue Updated on:  </h6><p>{{data.modifiedOn | date:'short' }}</p><br>
+        </div>
+        </mat-card-content>
+</mat-card>
+<button mat-raised-button style="color: white;" color="primary">Edit Issue</button> 
+</div>

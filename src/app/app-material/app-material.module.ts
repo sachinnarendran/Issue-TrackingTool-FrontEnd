@@ -10,7 +10,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTableModule} from '@angular/material/table';
 import {MatStepperModule} from '@angular/material/stepper';
-import { MatProgressSpinnerModule } from '@angular/material';
+import { MatDialogModule, MatProgressSpinnerModule } from '@angular/material';
 import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
@@ -28,7 +28,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatTableModule,
     MatStepperModule,
     MatProgressSpinnerModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDialogModule
   ],
   exports:[
     MatInputModule,
@@ -41,7 +42,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatSnackBarModule,
     MatTableModule,
     MatStepperModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatDialogModule
   ]
 })
 export class AppMaterialModule { }

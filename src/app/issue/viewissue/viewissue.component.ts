@@ -2,9 +2,11 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { IssueDataSource } from '../issue.source';
 import { IssueService } from '../issue.service';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatDialog } from '@angular/material/dialog';
 import { tap } from 'rxjs/operators';
 import { MatSort } from '@angular/material/sort';
 import { IssueModel } from '../issue.model';
+import { IssueDialogComponet } from 'src/app/app-material/component/issuedialog.component';
 
 @Component({
   selector: 'app-viewissue',
@@ -19,7 +21,7 @@ totalCount:number;
 
 @ViewChild(MatPaginator) paginator: MatPaginator;
 @ViewChild(MatSort) sort: MatSort;
-constructor(private issueService: IssueService) { }
+constructor(private issueService: IssueService,private dialog:MatDialog) { }
 
   ngOnInit() {
     this.dataSource = new IssueDataSource(this.issueService);
@@ -35,6 +37,16 @@ constructor(private issueService: IssueService) { }
     console.log("Inside View Init");
     this.dataSource.loadIssues('','asc',this.paginator.pageIndex,this.paginator.pageSize);
     this.totalCount = this.dataSource.totalRecordCount;
+  }
+  openViewIssue(rowData)
+  {
+      console.log(rowData);
+      const dialogBox = this.dialog.open(IssueDialogComponet,
+        {
+          width: '600px',
+          height:'400px',
+          data:rowData
+        })
   }
 }
 

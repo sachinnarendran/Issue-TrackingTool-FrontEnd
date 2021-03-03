@@ -1,0 +1,10 @@
+.issueDetails p,
+.issueDetails h6
+{
+    display: inline;
+    vertical-align: top;
+}
+.issueCard
+{
+    margin: 20px;
+}
