@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { AppService } from '../app.service';
 import { IssueModel } from './issue.model';
 import { Observable } from 'rxjs';
+import {map} from 'rxjs/operators';
 import { HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class IssueService {
-
   constructor(private appService:AppService) 
   { }
 
@@ -23,5 +23,12 @@ export class IssueService {
     .set('pageNumber',pageNumber.toString())
     .set('pageSize',pageSize.toString());
     return this.appService.get("issue/viewAllIssue", params);
+  }
+
+  getIssueDetails(issueId): any
+  {
+    let params = new HttpParams()
+    .set('issueId',issueId.toString());
+    return this.appService.get("issue/viewIssue",params);
   }
 }
