@@ -1,6 +1,10 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl, FormArray } from '@angular/forms';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
+import {ActivatedRoute} from '@angular/router';
+import { IssueService } from '../issue.service';
+import { IssueModel } from '../issue.model';
+import{map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-createissue',
@@ -10,7 +14,9 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 })
 export class CreateissueComponent implements OnInit {
   issueForm: FormGroup;
-    
+  issueEditObject:IssueModel;
+  newEditObject:IssueModel;
+   issueDetails; 
   // Config for Text Editor
   editorConfig: AngularEditorConfig = {
     editable: true,
@@ -40,15 +46,25 @@ export class CreateissueComponent implements OnInit {
 
   public editor;
 
-  constructor(private _formBuilder: FormBuilder) { }
+  constructor(private _formBuilder: FormBuilder,public router:ActivatedRoute,private issueService:IssueService) { }
 
   ngOnInit() {
-    this.buildForm();
+    
+   this.newEditObject =  this.getIssueDetails();
+    this.buildForm(this.newEditObject);
+    
   }
   get formArray(): AbstractControl | null { return this.issueForm.get('issueFormArray'); }
 
-  buildForm() {
-
+  buildForm(issueDetails) {
+    console.log(issueDetails);
+    if(this.issueDetails.issueId)
+    {
+    this.editIssue();  
+      
+    }
+    else
+    {
     this.issueForm = this._formBuilder.group({
       issueFormArray: this._formBuilder.array([
         this._formBuilder.group({
@@ -64,7 +80,30 @@ export class CreateissueComponent implements OnInit {
       ])
     })
   }
-  
+  }
+
+  getIssueDetails():IssueModel
+  {
+    let issueId;
+    this.router.paramMap.subscribe(params =>{
+          issueId = params.get('id');
+          if(issueId)
+          {
+            console.log(issueId);         
+          }
+    })
+    this.issueDetails =  this.getIssue(issueId);
+    return this.issueDetails;
+  }
+
+  async getIssue(issueId)
+  {
+      let result = await this.issueService.getIssueDetails(issueId).toPromise();
+      this.issueEditObject = result.data;
+      console.log(this.issueEditObject);
+      return this.issueEditObject;
+  }
+
   createIssue()
   {
     var issueDetails = this.issueForm.get('issueFormArray') as FormArray;
@@ -75,5 +114,11 @@ export class CreateissueComponent implements OnInit {
     console.log(this.issueForm.value.editorContent);
     console.log(this.issueForm.value);
     
+  }
+
+  editIssue()
+  {
+  this.issueForm.get('title').patchValue(this.issueEditObject.issueTitle);
+  this.issueForm.get('description').patchValue(this.issueEditObject.issueDescription);
   }
 }

@@ -15,7 +15,7 @@ const routes: Routes = [
   children:[{path:'',component:SignupComponent}]},
 
   {path:'issue',component:CreateissueComponent,pathMatch:'full'},
-
+  {path:'edit/:id',component:CreateissueComponent},
   {path:'getIssue',component:ViewissueComponent,pathMatch:'full'},
 
   {path:'', redirectTo:'signup',pathMatch:'full'}
